@@ -1,1 +1,1 @@
-web: gunicorn portal46.wsgi
+web: gunicorn portal.wsgi
