@@ -10,3 +10,5 @@ This is a project which aims to guide new fans (and old fans as well) in the 46G
 
 # Basic Architecture
 This web application will be hosted using Heroku (free dyno). Apart from that, information regarding these 2 groups and download links/urls will be stored in a google spreadsheet for easy updates and maintenance (this infos will be retrieved using Google App Script).
+
+this is a test
