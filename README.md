@@ -3,7 +3,7 @@ This is a project which aims to guide new fans (and old fans as well) in the 46G
 
 # Basic Features
 - A simple profile page for both Nogizaka46 and Keyakizaka46.
-- A simple page containing some download links to the shows.
+- A simple page containing some download links to the shows they're part of.
 - About page for me and how I came into the fandom.
 - A simple newsfeeds. _**(to be followed)**_
 - Album sales prediction and Member analytics. _**(to be followed)**_
