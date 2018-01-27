@@ -25,7 +25,7 @@ SECRET_KEY = 'a+3m^f_$@wdw#(vql-=$5z3dni4&@1*o1jo5de(isxd-y8r^wb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['intense-sands-44841.herokuapp.com']
 
 
 # Application definition
