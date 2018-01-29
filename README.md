@@ -32,4 +32,3 @@ We are using a simple Heroku pipeline containing one app for the staging and one
 6. Another reviewer will check it and if it is approved, the reviewer will then approve the _pull request_.
 
 _NOTE: Please don't forget to delete your feature branches after the final approval._
-
