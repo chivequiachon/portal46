@@ -11,6 +11,11 @@ This is a project which aims to guide new fans (and old fans as well) in the 46G
 # Basic Architecture
 This web application will be hosted using Heroku (free dyno). Apart from that, information regarding these 2 groups and download links/urls will be stored in a google spreadsheet for easy updates and maintenance (these data will be retrieved using Google App Script).
 
+# Git Branches
+- feature(s) -> Each feature will have its own feature branches.
+- develop -> All feature branches will be merged here and will be deployed to the staging. It will then undergo automated tests and if everything is fine, it will then be deployed to production.
+- master -> The branch containing the code used in the production environment.
+
 # Development Requirements
 1. python 3.6+
 2. pipenv
