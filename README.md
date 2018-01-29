@@ -16,7 +16,7 @@ This web application will be hosted using Heroku (free dyno). Apart from that, i
 2. pipenv
 
 # Pipeline
-We are using a simple Heroku pipeline containing one app for the staging and one app for the production. Any push performed to the _**feature/develop**_ branch will automatically be deployed in the staging environment and any push performed to the _**master**_ branch automatically be deployed in the production environment.
+We are using a simple Heroku pipeline containing one app for the staging and one app for the production. Any push performed to the _**feature/develop**_ branch will automatically be deployed in the staging environment and any push performed to the _**master**_ branch will automatically be deployed in the production environment.
 
 # Workflow
 1. Clone this repository.
