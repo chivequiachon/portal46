@@ -25,3 +25,5 @@ We are using a simple Heroku pipeline containing one app for the staging and one
 4. If ever the development is finished, create pull request to _**feature/develop**_ and wait for review, the reviewer will test it in the staging environment.
 5. If reviewer approves, the reviewer will be the one to create pull request to the _**master**_ branch from the _**feature/develop**_ branch.
 6. Another reviewer will check it and if it is approved, the reviewer will then approve the _pull request_.
+
+_NOTE: Please don't forget to delete your feature branches after the final approval._
