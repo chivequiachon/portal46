@@ -34,7 +34,8 @@ if DEBUG is not None:
 else:
   DEBUG = False
 
-ALLOWED_HOSTS = [os.environ['CURRENT_HOST']]
+CURRENT_HOST = os.environ['CURRENT_HOST']
+ALLOWED_HOSTS = [CURRENT_HOST]
 
 
 # Application definition
@@ -85,8 +86,12 @@ WSGI_APPLICATION = 'portal46.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'portal46',
+        'USER': 'portal46user',
+        'PASSWORD': 'GatewAy1011',
+        'HOST': CURRENT_HOST,
+        'PORT': '5432',
     }
 }
 
