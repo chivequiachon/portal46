@@ -84,12 +84,25 @@ WSGI_APPLICATION = 'portal46.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+DEVELOP_DB    = {'NAME':'portal46',       'USER':'portal46user', 'PASSWORD':'GatewAy1011'}
+STAGING_DB    = {'NAME':'d17k9bjlejeh5b', 'USER':'xkmkmtvxqgsynt', 'PASSWORD':'e5b18aeb9ad2edcb7e43534d28d8a160b612192ddda63e926582ef5945af1b71'}
+PRODUCTION_DB = {'NAME':'dclki60lnnqrpv', 'USER':'sfruhkexmllhnf', 'PASSWORD':'86722921aac6f8d5a60e4ae0427d24c24a33db28be6192718a360a5ec7823c24'}
+
+DB_SETTINGS = None
+MACHINE = os.environ['MACHINE']
+if MACHINE == 'DEVELOP':
+    DB_SETTINGS = DEVELOP_DB
+elif MACHINE == 'STAGING':
+    DB_SETTINGS = STAGING_DB
+elif MACHINE == 'PRODUCTION':
+    DB_SETTINGS = PRODUCTION_DB
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'portal46',
-        'USER': 'portal46user',
-        'PASSWORD': 'GatewAy1011',
+        'NAME': DB_SETTINGS['NAME'],
+        'USER': DB_SETTINGS['USER'],
+        'PASSWORD': DB_SETTINGS['PASSWORD'],
         'HOST': CURRENT_HOST,
         'PORT': '5432',
     }
