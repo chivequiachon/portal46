@@ -12,10 +12,14 @@ def about_me(request):
 def subs_download(request):
   return render(request, 'pages/subtitles_page.html')
 
-def nogiten_subs_download(request):
-  subs = SubtitleFile.objects.filter(subtitle_name__contains='Nogiten').order_by('subtitle_name')
-  return render(request, 'pages/nogiten_subs.html', {'subs':subs})
+def subs_list(request):
+  subs = None
+  subs_type = request.GET.get('subs', 'nogichuu')
+  if subs_type == "nogichuu":
+    subs = SubtitleFile.objects.filter(subtitle_name__contains='Construction').order_by('subtitle_name')
+  elif subs_type == "nogibingo":
+    subs = SubtitleFile.objects.filter(subtitle_name__contains='NOGIBINGO').order_by('subtitle_name')
+  elif subs_type == "nogiten":
+    subs = SubtitleFile.objects.filter(subtitle_name__contains='Nogiten').order_by('subtitle_name')
+  return render(request, 'pages/subs_list.html', {'subs':subs})
 
-def nogibingo_subs_download(request):
-  subs = SubtitleFile.objects.filter(subtitle_name__contains='NOGIBINGO').order_by('subtitle_name')
-  return render(request, 'pages/nogibingo_subs.html', {'subs':subs})
