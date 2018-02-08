@@ -1,6 +1,0 @@
-{% extends 'pages/simple_base.html'%}
-{% block content %}
-  {% for sub in subs %}
-  <a href="{{ sub.subtitle_download_link }}">{{ sub.subtitle_name }}</a><br />
-  {% endfor %}
-{% endblock %}
