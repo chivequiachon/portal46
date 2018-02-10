@@ -84,9 +84,9 @@ WSGI_APPLICATION = 'portal46.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DEVELOP_DB    = {'NAME':'portal46',       'USER':'portal46user', 'PASSWORD':'GatewAy1011'}
-STAGING_DB    = {'NAME':'d17k9bjlejeh5b', 'USER':'xkmkmtvxqgsynt', 'PASSWORD':'e5b18aeb9ad2edcb7e43534d28d8a160b612192ddda63e926582ef5945af1b71'}
-PRODUCTION_DB = {'NAME':'df6nimjp6v0q7d', 'USER':'gwloobrusszhtn', 'PASSWORD':'d9c3849f8f5f6a0471d9b75ab7e244b1b59f456ab0e34b40f71af4a18c9bf373'}
+DEVELOP_DB    = {'HOST':'127.0.0.1', 'NAME':'portal46',       'USER':'portal46user', 'PASSWORD':'GatewAy1011'}
+STAGING_DB    = {'HOST':'intense-sands-44841.herokuapp.com', 'NAME':'d17k9bjlejeh5b', 'USER':'xkmkmtvxqgsynt', 'PASSWORD':'e5b18aeb9ad2edcb7e43534d28d8a160b612192ddda63e926582ef5945af1b71'}
+PRODUCTION_DB = {'HOST':'portal46db.herokuapp.com', 'NAME':'df6nimjp6v0q7d', 'USER':'gwloobrusszhtn', 'PASSWORD':'d9c3849f8f5f6a0471d9b75ab7e244b1b59f456ab0e34b40f71af4a18c9bf373'}
 
 DB_SETTINGS = None
 MACHINE = os.environ['MACHINE']
@@ -103,7 +103,7 @@ DATABASES = {
         'NAME': DB_SETTINGS['NAME'],
         'USER': DB_SETTINGS['USER'],
         'PASSWORD': DB_SETTINGS['PASSWORD'],
-        'HOST': CURRENT_HOST,
+        'HOST': DB_SETTINGS['HOST'],
         'PORT': '5432',
     }
 }
