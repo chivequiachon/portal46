@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'portal46.wsgi.application'
 
 DEVELOP_DB    = {'NAME':'portal46',       'USER':'portal46user', 'PASSWORD':'GatewAy1011'}
 STAGING_DB    = {'NAME':'d17k9bjlejeh5b', 'USER':'xkmkmtvxqgsynt', 'PASSWORD':'e5b18aeb9ad2edcb7e43534d28d8a160b612192ddda63e926582ef5945af1b71'}
-PRODUCTION_DB = {'NAME':'dclki60lnnqrpv', 'USER':'sfruhkexmllhnf', 'PASSWORD':'86722921aac6f8d5a60e4ae0427d24c24a33db28be6192718a360a5ec7823c24'}
+PRODUCTION_DB = {'NAME':'df6nimjp6v0q7d', 'USER':'gwloobrusszhtn', 'PASSWORD':'d9c3849f8f5f6a0471d9b75ab7e244b1b59f456ab0e34b40f71af4a18c9bf373'}
 
 DB_SETTINGS = None
 MACHINE = os.environ['MACHINE']
