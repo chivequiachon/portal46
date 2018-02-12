@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import django_heroku 
+import django_redis
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -105,6 +106,17 @@ DATABASES = {
         'PASSWORD': DB_SETTINGS['PASSWORD'],
         'HOST': DB_SETTINGS['HOST'],
         'PORT': '5432',
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis-12889.c17.us-east-1-4.ec2.cloud.redislabs.com:12889/0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "GatewAy1011"
+        }
     }
 }
 
