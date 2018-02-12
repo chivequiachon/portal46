@@ -112,7 +112,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis-12889.c17.us-east-1-4.ec2.cloud.redislabs.com:12889/1",
+        "LOCATION": "redis://redis-12889.c17.us-east-1-4.ec2.cloud.redislabs.com:12889/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": "GatewAy1011"
