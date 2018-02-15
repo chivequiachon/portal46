@@ -1,0 +1,28 @@
+{% extends 'pages/base.html'%}
+{% load static %}
+{% block custom_style %}
+<!-- Custom styles for this template -->
+<link href="{% static 'bootstrap/css/4-col-portfolio.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<!-- Page Heading -->
+<h1 class="my-4">Updates</h1>
+<p class="lead">Provides daily updates of Nogizaka46 and Keyakizaka46 related FB pages by counting their posts for the day.</p>
+<div class="row">
+{% for info in fb_group_infos %}
+  {% with 'images/fb_group_'|add:info.id|add:'.jpg' as href_url %}
+    <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="{{ info.url }}"><img class="card-img-top" src="{% static href_url %}" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="{{ info.url }}">{{ info.name }}</a>
+          </h4>
+          <p class="card-text"><span style="font-size:25px;">{{ info.post_count }}</span> post(s) since {{ target_date }}.</p>
+        </div>
+      </div>
+    </div>
+  {% endwith %}
+{% endfor %}
+</div>
+{% endblock %}
