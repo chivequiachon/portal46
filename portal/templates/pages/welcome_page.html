@@ -1,5 +1,18 @@
 {% extends 'pages/base.html'%}
 {% load static %}
+{% block custom_style %}
+<style>
+  body {
+    padding-top: 54px;
+  }
+  @media (min-width: 992px) {
+    body {
+      padding-top: 56px;
+    }
+  }
+
+</style>
+{% endblock %}
 {% block content %}
 <div class="row">
   <div class="col-lg-12 text-center">
