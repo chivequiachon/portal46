@@ -15,18 +15,8 @@
     <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <style>
-      body {
-        padding-top: 54px;
-      }
-      @media (min-width: 992px) {
-        body {
-          padding-top: 56px;
-        }
-      }
-
-    </style>
-
+    {% block custom_style %}
+    {% endblock %}
   </head>
 
   <body>
@@ -47,7 +37,7 @@
               <a class="nav-link" href="{% url 'subs_download' %}">Subtitles</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Newsfeeds</a>
+              <a class="nav-link" href="{% url 'updates' %}">Updates</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'about_me' %}">About Me</a>
@@ -65,6 +55,14 @@
       {% block content %}
       {% endblock %}
     </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Portal46 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
