@@ -25,10 +25,10 @@ FB_GROUPS = {
 }
 
 def get_access_token():
-  ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token?client_id=1831017710453000&client_secret=d0a5b177319e8ec5b3b414cdd544d953&grant_type=client_credentials"
-  response = requests.get(ACCESS_TOKEN_URL)
-  data = response.json()
-  access_token = data['access_token']
+  #ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token?client_id=1831017710453000&client_secret=d0a5b177319e8ec5b3b414cdd544d953&grant_type=client_credentials"
+  #response = requests.get(ACCESS_TOKEN_URL)
+  #data = response.json()
+  #access_token = data['access_token']
   return "1831017710453000|4BzULaLlMZiC3AgulMVkDKz6RkE"
 
 
