@@ -3,6 +3,25 @@
 {% block custom_style %}
 <!-- Custom styles for this template -->
 <link href="{% static 'bootstrap/css/4-col-portfolio.css' %}" rel="stylesheet">
+
+<style>
+#stage48 {
+  background-color: black;
+  padding-top: 1cm;
+  padding-left: 0.5cm;
+  padding-bottom: 1cm;
+  color: white;
+}
+
+#onehallyu {
+  background-color: #134e72;
+  padding-top: 1cm;
+  padding-left: 0.5cm;
+  padding-bottom: 1cm;
+  color: white;
+}
+
+</style>
 {% endblock %}
 {% block content %}
 <!-- Page Heading -->
@@ -25,4 +44,24 @@
   {% endwith %}
 {% endfor %}
 </div>
+
+<div class="row">
+  <div class="col-lg-12 text-center" id="stage48">
+    <p class="lead">---------------------------+Stage48 Updates+---------------------------</p>
+    {% for alert in stage48_alerts %}
+      <p align="left" style="font-size:13px">{{ alert | safe }}</p>
+    {% endfor %}
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col-lg-12 text-center" id="onehallyu">
+    <p class="lead">---------------------------+OneHallyu Updates+---------------------------</p>
+    {% for notif in onehallyu_notifs %}
+      <p align="left" style="font-size:13px">{{ notif | safe }}</p>
+    {% endfor %}
+  </div>
+</div>
+<br />
 {% endblock %}

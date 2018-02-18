@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 
-from portal import fb_updates
+from portal import fb_updates, stage48_updates, onehallyu_updates
 from portal.models import SubtitleFile
 
 def welcome_page(request):
@@ -26,6 +26,7 @@ def subs_list(request):
   return render(request, 'pages/subs_list.html', {'subs':subs})
 
 def updates(request):
+  ## Get Facebook Updates
   access_token = fb_updates.get_access_token()
   target_date = fb_updates.get_target_date()
 
@@ -33,6 +34,15 @@ def updates(request):
   for id in fb_updates.FB_GROUPS:
     npost = fb_updates.get_fb_group_posts_number(target_date, id, access_token)
     fb_group_infos.append(fb_updates.FbGroup(fb_updates.FB_GROUPS[id], id, npost))
+    
+  ## Get Stage48 Updates
+  s48_alerts_page = stage48_updates.get_alerts_page("chivequiachon@gmail.com", "GatewAy1011")
+  alerts = stage48_updates.get_alerts(s48_alerts_page)
+  
+  ## Get OneHallyu Updates
+  login_data = {'auth_key': '880ea6a14ea49e853634fbdc5015a024', 'ips_username': 'Chubo', 'ips_password': 'GatewAy1011'}
+  onehallyu_notifs_page = onehallyu_updates.get_notifications_page(login_data['auth_key'], login_data['ips_username'], login_data['ips_password'])
+  notifs = onehallyu_updates.get_notifications(onehallyu_notifs_page)
 
-  return render(request, 'pages/updates.html', {'fb_group_infos': fb_group_infos, 'target_date': target_date})
+  return render(request, 'pages/updates.html', {'fb_group_infos': fb_group_infos, 'target_date': target_date, 'stage48_alerts': alerts, 'onehallyu_notifs': notifs})
 
