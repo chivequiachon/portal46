@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6473d4de82eb05a19a8703671264892edcf60b6c49bc39ed93811e326fb33880"
+            "sha256": "db4c5068aadc1c4ff3d041fe856b6ee9c9deb87904fc8a1e24c3786c50092f63"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -28,6 +28,14 @@
         ]
     },
     "default": {
+        "beautifulsoup4": {
+            "hashes": [
+                "sha256:7015e76bf32f1f574636c4288399a6de66ce08fb7b2457f628a8d70c0fbabb11",
+                "sha256:11a9a27b7d3bddc6d86f59fb76afb70e921a25ac2d6cc55b40d072bd68435a76",
+                "sha256:808b6ac932dccb0a4126558f7dfdcf41710dd44a4ef497a0bb59a77f9f078e89"
+            ],
+            "version": "==4.6.0"
+        },
         "dj-database-url": {
             "hashes": [
                 "sha256:e16d94c382ea0564c48038fa7fe8d9c890ef1ab1a8ec4cb48e732c124b9482fd",
