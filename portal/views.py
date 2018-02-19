@@ -32,17 +32,21 @@ def updates(request):
 
   fb_group_infos = []
   for id in fb_updates.FB_GROUPS:
-    npost = fb_updates.get_fb_group_posts_number(target_date, id, access_token)
-    fb_group_infos.append(fb_updates.FbGroup(fb_updates.FB_GROUPS[id], id, npost))
+    fb_posts = fb_updates.get_fb_group_posts(target_date, id, access_token)
+    npost = len(fb_posts)
+    fb_group_infos.append(fb_updates.FbGroup(fb_updates.FB_GROUPS[id], id, fb_posts, npost))
     
   ## Get Stage48 Updates
   s48_alerts_page = stage48_updates.get_alerts_page("chivequiachon@gmail.com", "GatewAy1011")
-  alerts = stage48_updates.get_alerts(s48_alerts_page)
+  s48_alerts = stage48_updates.get_alerts(s48_alerts_page)
+  s48_alerts_n = len(s48_alerts)
   
   ## Get OneHallyu Updates
   login_data = {'auth_key': '880ea6a14ea49e853634fbdc5015a024', 'ips_username': 'Chubo', 'ips_password': 'GatewAy1011'}
   onehallyu_notifs_page = onehallyu_updates.get_notifications_page(login_data['auth_key'], login_data['ips_username'], login_data['ips_password'])
-  notifs = onehallyu_updates.get_notifications(onehallyu_notifs_page)
+  onehallyu_notifs = onehallyu_updates.get_notifications(onehallyu_notifs_page)
+  onehallyu_notifs_n = len(onehallyu_notifs)
+  
 
-  return render(request, 'pages/updates.html', {'fb_group_infos': fb_group_infos, 'target_date': target_date, 'stage48_alerts': alerts, 'onehallyu_notifs': notifs})
+  return render(request, 'pages/updates.html', {'fb_group_infos': fb_group_infos, 'fb_target_date': target_date, 'stage48_alerts': s48_alerts, 'stage48_alerts_n': s48_alerts_n, 'onehallyu_notifs': onehallyu_notifs, 'onehallyu_notifs_n': onehallyu_notifs_n})
 
