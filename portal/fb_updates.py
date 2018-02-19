@@ -1,16 +1,28 @@
 import requests
 import datetime
 
+class FbPost(object):
+  created_time = ""
+  message = ""
+  story = ""
+  
+  def __init__(self, story, message, created_time):
+    self.story = story
+    self.message = message
+    self.created_time = created_time
+    
 
 class FbGroup(object):
   name = None
   id = None
   url = None
+  posts = None # FbPost list
   post_count = 0
 
-  def __init__(self, name, id, post_count):
+  def __init__(self, name, id, posts, post_count):
     self.name = name
     self.id = id
+    self.posts = posts
     self.post_count = post_count
     self.url = "https://www.facebook.com/" + id
 
@@ -34,10 +46,32 @@ def get_access_token():
 
 def get_fb_group_posts(since, group, access_token):
   FB_GROUP_POST_RETRIEVE_URL = "https://graph.facebook.com/v2.9/{}/feed?access_token={}&since={}".format(group, access_token, since)
+  
   response = requests.get(FB_GROUP_POST_RETRIEVE_URL) 
   data = response.json()
   posts = data['data']
-  return posts
+  
+  fb_posts = []
+  for post in posts:
+    story = ""
+    message = ""
+    created_time = ""
+    if 'story' in post:
+      story = post['story']
+    
+    if 'message' in post:
+      message = post['message']
+      
+    if story != "" and message != "":
+      story += "<br />"
+    
+    # Every facebook post always has a created_time
+    created_time_keywords = post['created_time'].replace("T", " ").replace("+", " ").split(" ")
+    created_time = "[{}][{}]".format(created_time_keywords[0], created_time_keywords[1])
+      
+    fb_posts.append(FbPost(story, message, created_time))
+    
+  return fb_posts
 
 def get_fb_group_posts_number(since, group, access_token):
   posts = get_fb_group_posts(since, group, access_token)
