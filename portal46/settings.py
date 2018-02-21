@@ -14,6 +14,22 @@ import os
 import django_heroku 
 import django_redis
 
+# Encryption settings
+FERNET_CIPHER_KEY = b'hrLDgtcrQGqIQLCqUnMgwAf7kU_Fu1VmslETlMEmCRk='
+
+# OneHallyu settings
+ONEHALLYU_AUTH_KEY = '880ea6a14ea49e853634fbdc5015a024'
+
+# Watched FB Pages
+# id:fb_page_name
+FB_GROUPS = {
+  'nogizaka46':'乃木坂46 (nogizaka46)',
+  'ngzk46sg':'乃木坂46 - Nogizaka46 Singapore Page',
+  'HoshiminaID':'Hoshino Minami - 星野みなみ Indonesia Fanspage',
+  'NaachanTHFanpageN46':'Nishino Nanase Thai Fanpage',
+  'ShimaiyanID':'Shiraishi Mai - 白石麻衣 Indonesia Fansclub',
+}
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -85,7 +101,7 @@ WSGI_APPLICATION = 'portal46.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DEVELOP_DB    = {'HOST':'127.0.0.1', 'NAME':'portal46',       'USER':'portal46user', 'PASSWORD':'GatewAy1011'}
+DEVELOP_DB    = {'HOST':'127.0.0.1', 'NAME':'portal46', 'USER':'portal46user', 'PASSWORD':'GatewAy1011'}
 STAGING_DB    = {'HOST':'ec2-54-225-230-142.compute-1.amazonaws.com', 'NAME':'d17k9bjlejeh5b', 'USER':'xkmkmtvxqgsynt', 'PASSWORD':'e5b18aeb9ad2edcb7e43534d28d8a160b612192ddda63e926582ef5945af1b71'}
 PRODUCTION_DB = {'HOST':'ec2-23-23-93-115.compute-1.amazonaws.com', 'NAME':'df6nimjp6v0q7d', 'USER':'gwloobrusszhtn', 'PASSWORD':'d9c3849f8f5f6a0471d9b75ab7e244b1b59f456ab0e34b40f71af4a18c9bf373'}
 

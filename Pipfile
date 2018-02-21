@@ -11,6 +11,7 @@ gunicorn = "*"
 django-heroku = "*"
 django-redis = "*"
 beautifulsoup4 = "*"
+cryptography = "*"
 
 
 [requires]
