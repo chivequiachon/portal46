@@ -27,15 +27,6 @@ class FbGroup(object):
     self.url = "https://www.facebook.com/" + id
 
 
-# id:fb_page_name
-FB_GROUPS = {
-  'nogizaka46':'乃木坂46 (nogizaka46)',
-  'ngzk46sg':'乃木坂46 - Nogizaka46 Singapore Page',
-  'HoshiminaID':'Hoshino Minami - 星野みなみ Indonesia Fanspage',
-  'NaachanTHFanpageN46':'Nishino Nanase Thai Fanpage',
-  'ShimaiyanID':'Shiraishi Mai - 白石麻衣 Indonesia Fansclub',
-}
-
 def get_access_token():
   #ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token?client_id=1831017710453000&client_secret=d0a5b177319e8ec5b3b414cdd544d953&grant_type=client_credentials"
   #response = requests.get(ACCESS_TOKEN_URL)
