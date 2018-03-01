@@ -20,6 +20,10 @@ FERNET_CIPHER_KEY = b'hrLDgtcrQGqIQLCqUnMgwAf7kU_Fu1VmslETlMEmCRk='
 # OneHallyu settings
 ONEHALLYU_AUTH_KEY = '880ea6a14ea49e853634fbdc5015a024'
 
+# FB graph api credentials
+FB_CLIENT_ID='1831017710453000'
+FB_CLIENT_SECRET='d0a5b177319e8ec5b3b414cdd544d953'
+
 # Watched FB Pages
 # id:fb_page_name
 FB_GROUPS = {
