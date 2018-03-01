@@ -5,7 +5,7 @@ This is a project which aims to guide new fans (and old fans as well) in the 46G
 - A simple profile page for both N46 and K46.
 - A simple page containing some download links to the shows they're part of.
 - About page for me and how I came into the fandom.
-- A simple newsfeeds. _**(to be followed)**_
+- A simple newsfeeds (with fb, stage48, and onehallyu new post tracking).
 - Album sales prediction and Member analytics. _**(to be followed)**_
 
 # Basic Architecture
