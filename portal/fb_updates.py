@@ -27,12 +27,12 @@ class FbGroup(object):
     self.url = "https://www.facebook.com/" + id
 
 
-def get_access_token():
-  #ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token?client_id=1831017710453000&client_secret=d0a5b177319e8ec5b3b414cdd544d953&grant_type=client_credentials"
-  #response = requests.get(ACCESS_TOKEN_URL)
-  #data = response.json()
-  #access_token = data['access_token']
-  return "1831017710453000|4BzULaLlMZiC3AgulMVkDKz6RkE"
+def get_access_token(fb_client_id, fb_client_secret):
+  ACCESS_TOKEN_URL = "https://graph.facebook.com/oauth/access_token?client_id={}&client_secret={}&grant_type=client_credentials".format(fb_client_id, fb_client_secret)
+  response = requests.get(ACCESS_TOKEN_URL)
+  data = response.json()
+  access_token = data['access_token']
+  return access_token
 
 
 def get_fb_group_posts(since, group, access_token):
