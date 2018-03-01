@@ -30,7 +30,7 @@ def subs_list(request):
 
 def updates(request):
   ## Get Facebook Updates
-  access_token = fb_updates.get_access_token()
+  access_token = fb_updates.get_access_token(settings.FB_CLIENT_ID, settings.FB_CLIENT_SECRET)
   target_date = fb_updates.get_target_date()
 
   fb_group_infos = []
