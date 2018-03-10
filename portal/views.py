@@ -3,7 +3,7 @@ from django.views.decorators.cache import cache_page
 from django.conf import settings
 
 from portal import fb_updates, stage48_updates, onehallyu_updates, endecoder
-from portal.models import SubtitleFile, Credential
+from portal.models import SubtitleFile, Credential, FbPage
 
 
 
@@ -33,11 +33,12 @@ def updates(request):
   access_token = fb_updates.get_access_token(settings.FB_CLIENT_ID, settings.FB_CLIENT_SECRET)
   target_date = fb_updates.get_target_date()
 
+  fb_pages = FbPage.objects.all()
   fb_group_infos = []
-  for id in settings.FB_GROUPS:
-    fb_posts = fb_updates.get_fb_group_posts(target_date, id, access_token)
+  for fb_page in fb_pages:
+    fb_posts = fb_updates.get_fb_group_posts(target_date, fb_page.page_id, access_token)
     npost = len(fb_posts)
-    fb_group_infos.append(fb_updates.FbGroup(settings.FB_GROUPS[id], id, fb_posts, npost))
+    fb_group_infos.append(fb_updates.FbGroup(fb_page.name, fb_page.page_id, fb_posts, npost))
     
   ## Get Stage48 Updates
   s48_credential = Credential.objects.filter(forum__contains='stage48')

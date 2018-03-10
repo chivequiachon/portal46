@@ -24,15 +24,6 @@ ONEHALLYU_AUTH_KEY = '880ea6a14ea49e853634fbdc5015a024'
 FB_CLIENT_ID='1831017710453000'
 FB_CLIENT_SECRET='d0a5b177319e8ec5b3b414cdd544d953'
 
-# Watched FB Pages
-# id:fb_page_name
-FB_GROUPS = {
-  'nogizaka46':'乃木坂46 (nogizaka46)',
-  'ngzk46sg':'乃木坂46 - Nogizaka46 Singapore Page',
-  'HoshiminaID':'Hoshino Minami - 星野みなみ Indonesia Fanspage',
-  'NaachanTHFanpageN46':'Nishino Nanase Thai Fanpage',
-  'ShimaiyanID':'Shiraishi Mai - 白石麻衣 Indonesia Fansclub',
-}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
