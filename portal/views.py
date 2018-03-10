@@ -3,7 +3,11 @@ from django.views.decorators.cache import cache_page
 from django.conf import settings
 
 from portal import fb_updates, stage48_updates, onehallyu_updates, endecoder
+from portal.blog_check import BlogCheck
+from portal.ikuchancheeks_updates import IkuchancheeksCheckStrategy
 from portal.models import SubtitleFile, Credential, FbPage
+
+import datetime
 
 
 
@@ -59,5 +63,25 @@ def updates(request):
   onehallyu_notifs = onehallyu_updates.get_notifications(onehallyu_notifs_page)
   onehallyu_notifs_n = len(onehallyu_notifs)
 
-  return render(request, 'pages/updates.html', {'fb_group_infos': fb_group_infos, 'fb_target_date': target_date, 'stage48_alerts': s48_alerts, 'stage48_alerts_n': s48_alerts_n, 'onehallyu_notifs': onehallyu_notifs, 'onehallyu_notifs_n': onehallyu_notifs_n})
+  ## Get blog updates
+  blogs = []
+
+  # Ikuchancheeks
+  now = datetime.datetime.now()
+  ikuchancheeks_check_strategy = IkuchancheeksCheckStrategy(now.year, now.month)
+  ikuchancheeks_check = BlogCheck(ikuchancheeks_check_strategy, "Ikuchancheeks", "https://ikuchancheeks.blogspot.co.id/", "{}/{}".format(now.year, now.month))
+  ikuchancheeks_check.check_updates()
+  blogs.append(ikuchancheeks_check)
+
+  data = {
+    'fb_group_infos': fb_group_infos,
+    'fb_target_date': target_date,
+    'stage48_alerts': s48_alerts,
+    'stage48_alerts_n': s48_alerts_n,
+    'onehallyu_notifs': onehallyu_notifs,
+    'onehallyu_notifs_n': onehallyu_notifs_n,
+    'blog_updates': blogs,
+  }
+    
+  return render(request, 'pages/updates.html', data)
 
