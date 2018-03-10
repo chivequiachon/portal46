@@ -31,3 +31,11 @@ class Credential(models.Model):
         
     def __str__(self):
         return self.username
+
+
+class FbPage(models.Model):
+	page_id = models.CharField(max_length=50)
+	name = models.CharField(max_length=50)
+
+	def __str__(self):
+		return "{} : {}".format(self.name, self.page_id)
