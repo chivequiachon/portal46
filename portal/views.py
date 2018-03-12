@@ -6,6 +6,7 @@ from portal import fb_updates, stage48_updates, onehallyu_updates, endecoder
 from portal.blog_check import BlogCheck
 from portal.ikuchancheeks_updates import IkuchancheeksCheckStrategy
 from portal.conjyak_updates import ConjyakCheckStrategy
+from portal.depressingsubs_updates import DepressingSubsCheckStrategy
 from portal.models import SubtitleFile, Credential, FbPage
 
 import datetime
@@ -79,6 +80,13 @@ def updates(request):
   conjyak_check = BlogCheck(conjyak_check_strategy, "Conjyak", "https://conjyak.wordpress.com/", "{}/{}".format(now.year, now.month))
   conjyak_check.check_updates()
   blogs.append(conjyak_check)
+
+  # DepressingSubs
+  depressingsubs_check_strategy = DepressingSubsCheckStrategy(now.year, now.month)
+  depressingsubs_check = BlogCheck(depressingsubs_check_strategy, "DepressingSubs", "http://depressingsubs.com/", "{}/{}".format(now.year, now.month))
+  depressingsubs_check.check_updates()
+  blogs.append(depressingsubs_check)
+
 
   data = {
     'fb_group_infos': fb_group_infos,

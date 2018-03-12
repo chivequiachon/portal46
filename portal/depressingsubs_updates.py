@@ -7,7 +7,7 @@ import requests
 class DepressingSubsCheckStrategy(BlogCheckStrategy):
     def __init__(self, year, month):
         self.year = year
-        sefl.month = month
+        self.month = month
 
     def request_page(self):
         r = requests.get("http://depressingsubs.com/{}/{}/".format(self.year, self.month))
