@@ -5,6 +5,7 @@ from django.conf import settings
 from portal import fb_updates, stage48_updates, onehallyu_updates, endecoder
 from portal.blog_check import BlogCheck
 from portal.ikuchancheeks_updates import IkuchancheeksCheckStrategy
+from portal.conjyak_updates import ConjyakCheckStrategy
 from portal.models import SubtitleFile, Credential, FbPage
 
 import datetime
@@ -72,6 +73,12 @@ def updates(request):
   ikuchancheeks_check = BlogCheck(ikuchancheeks_check_strategy, "Ikuchancheeks", "https://ikuchancheeks.blogspot.co.id/", "{}/{}".format(now.year, now.month))
   ikuchancheeks_check.check_updates()
   blogs.append(ikuchancheeks_check)
+
+  # Conjyak
+  conjyak_check_strategy = ConjyakCheckStrategy(now.year, now.month)
+  conjyak_check = BlogCheck(conjyak_check_strategy, "Conjyak", "https://conjyak.wordpress.com/", "{}/{}".format(now.year, now.month))
+  conjyak_check.check_updates()
+  blogs.append(conjyak_check)
 
   data = {
     'fb_group_infos': fb_group_infos,
