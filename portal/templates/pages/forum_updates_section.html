@@ -1,0 +1,33 @@
+{% load static %}
+<div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+  <div class="card h-100">
+    <a href="#"><img class="card-img-top" src="{% static 'images/forum_stage48.jpg' %}" alt=""></a>
+    <div class="card-body">
+      <h4 class="card-title">
+        <a href="http://www.stage48.net/forum/index.php#nogizaka46.62">Stage48</a>
+      </h4>
+      <p class="card-text"><a href="#" data-toggle="modal" data-target="#modal-stage48"><span style="font-size:25px;">{{ stage48_alerts_n }}</span></a> alert(s) for today.</p>
+    </div>
+  </div>
+</div>
+<!-- Stage48 Modal -->
+<div class="modal fade" id="modal-stage48" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Stage48 Alerts</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="font-size:13px">
+      {% for alert in stage48_alerts %}
+        {{ alert | safe }}<br />
+      {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
