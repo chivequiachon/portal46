@@ -25,42 +25,13 @@
 {% endblock %}
 
 {% block content %}
-<!-- Page Heading -->
 <br /><h1 class="my-4">46G-related Forums</h1>
-<div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="{% static 'images/forum_stage48.jpg' %}" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="http://www.stage48.net/forum/index.php#nogizaka46.62">Stage48</a>
-        </h4>
-        <p class="card-text"><a href="#" data-toggle="modal" data-target="#modal-stage48"><span style="font-size:25px;">{{ stage48_alerts_n }}</span></a> alert(s) for today.</p>
-      </div>
-    </div>
+<div id="forums" class="row">
+   <!-- loading screen -->
+  <div id="loading-screen" class="col-lg-12 text-center">
+    <img src="{% static 'images/loader.gif' %}"/>
   </div>
-  <!-- Stage48 Modal -->
-  <div class="modal fade" id="modal-stage48" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Stage48 Alerts</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="font-size:13px">
-        {% for alert in stage48_alerts %}
-          {{ alert | safe }}<br />
-        {% endfor %}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+<!--
   <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
     <div class="card h-100">
       <a href="#"><img class="card-img-top" src="{% static 'images/forum_onehallyu.jpg' %}" alt=""></a>
@@ -72,7 +43,6 @@
       </div>
     </div>
   </div>
-  <!-- OneHallyu Modal -->
   <div class="modal fade" id="modal-onehallyu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -93,86 +63,59 @@
       </div>
     </div>
   </div>
+-->
 </div><br />
 
 <h1 class="my-4">46G-related FB Pages</h1>
-<div class="row">
-{% for info in fb_group_infos %}
-  {% with 'images/fb_group_'|add:info.id|add:'.jpg' as href_url %}
-  <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-    <div class="card h-100">
-      <a href="{{ info.url }}"><img class="card-img-top" src="{% static href_url %}" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="{{ info.url }}">{{ info.name }}</a>
-        </h4>
-        <p class="card-text"><a href="#" data-toggle="modal" data-target="#modal-{{ info.id }}"><span style="font-size:25px;">{{ info.post_count }}</span></a> post(s) since {{ fb_target_date }}.</p>
-      </div>
-    </div>
+<div id="fb-pages" class="row">
+  <!-- loading screen -->
+  <div id="loading-screen" class="col-lg-12 text-center">
+    <img src="{% static 'images/loader.gif' %}"/>
   </div>
-  {% endwith %}
-  <!-- FB Group Modal -->
-  <div class="modal fade" id="modal-{{ info.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ info.name }}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="font-size:13px">
-        {% for fb_post in info.posts %}
-          <strong>{{ fb_post.created_time }}</strong> {{ fb_post.story | safe }} {{ fb_post.message }}<br />
-        {% endfor %}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endfor %}
 </div><br />
 
-<!-- Blog Updates Check -->
 <h1 class="my-4">46G-related Blogs</h1>
-<div class="row">
-{% for updates in blog_updates %}
-  <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="#" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="{{ updates.blog_url }}">{{ updates.blog_name }}</a>
-        </h4>
-        <p class="card-text"><a href="#" data-toggle="modal" data-target="#modal-{{ updates.blog_name }}"><span style="font-size:25px;">{{ updates.blog_posts_n }}</span></a> post(s) since {{ updates.date }}.</p>
-      </div>
-    </div>
+<div id="blogs" class="row">
+  <!-- loading screen -->
+  <div id="loading-screen" class="col-lg-12 text-center">
+    <img src="{% static 'images/loader.gif' %}"/>
   </div>
-  <!-- Blog Modal -->
-  <div class="modal fade" id="modal-{{ updates.blog_name }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ updates.blog_name }}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="font-size:13px">
-        {% for post in updates.blog_posts %}
-          {{ post | safe }} <br />
-        {% endfor %}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endfor %}
 </div><br />
 
 
+{% endblock %}
+
+{% block jscalls %}
+$.ajax({
+    url: '{% url 'forum_updates' %}',
+    type: 'get', // This is the default though, you don't actually need to always mention it
+    success: function(data) {
+        $("#forums").html(data)
+    },
+    failure: function(data) { 
+        alert('Got an error dude');
+    }
+}); 
+
+$.ajax({
+    url: '{% url 'fb_updates' %}',
+    type: 'get',
+    success: function(data) {
+        $("#fb-pages").html(data)
+    },
+    failure: function(data) { 
+        alert('Got an error dude');
+    }
+}); 
+
+$.ajax({
+    url: '{% url 'blog_updates' %}',
+    type: 'get',
+    success: function(data) {
+        $("#blogs").html(data)
+    },
+    failure: function(data) { 
+        alert('Got an error dude');
+    }
+});
 {% endblock %}
