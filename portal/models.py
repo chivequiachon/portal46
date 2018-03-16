@@ -36,6 +36,7 @@ class Credential(models.Model):
 class FbPage(models.Model):
 	page_id = models.CharField(max_length=50)
 	name = models.CharField(max_length=50)
+	img_url = models.CharField(max_length=100, default='to_be_changed')
 
 	def __str__(self):
-		return "{} : {}".format(self.name, self.page_id)
+		return "{} : {} : {}".format(self.name, self.page_id, self.img_url)

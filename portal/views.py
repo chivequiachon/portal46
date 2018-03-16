@@ -49,16 +49,16 @@ def forum_updates_fetch(request):
     s48_alerts = stage48_updates.get_alerts(s48_alerts_page)
     s48_alerts_n = len(s48_alerts)
 
-    #  ## Get OneHallyu Updates
-    #  onehallyu_auth_key = settings.ONEHALLYU_AUTH_KEY
-    #  onehallyu_credential = Credential.objects.filter(forum__contains='onehallyu')
-    #  onehallyu_username = endecoder.decode(onehallyu_credential[0].username)
-    #  onehallyu_password = endecoder.decode(onehallyu_credential[0].password)
-    #  
-    #  onehallyu_notifs_page = onehallyu_updates.get_notifications_page(onehallyu_auth_key, onehallyu_username, onehallyu_password)
-    #  onehallyu_notifs = onehallyu_updates.get_notifications(onehallyu_notifs_page)
-    #  onehallyu_notifs_n = len(onehallyu_notifs)
-    #
+    ## Get OneHallyu Updates
+    #onehallyu_auth_key = settings.ONEHALLYU_AUTH_KEY
+    #onehallyu_credential = Credential.objects.filter(forum__contains='onehallyu')
+    #onehallyu_username = endecoder.decode(onehallyu_credential[0].username)
+    #onehallyu_password = endecoder.decode(onehallyu_credential[0].password)
+    # 
+    #onehallyu_notifs_page = onehallyu_updates.get_notifications_page(onehallyu_auth_key, onehallyu_username, onehallyu_password)
+    #onehallyu_notifs = onehallyu_updates.get_notifications(onehallyu_notifs_page)
+    #onehallyu_notifs_n = len(onehallyu_notifs)
+   
     data = {
       'stage48_alerts': s48_alerts,
       'stage48_alerts_n': s48_alerts_n,
@@ -82,7 +82,7 @@ def fb_updates_fetch(request):
     for fb_page in fb_pages:
       fb_posts = fb_updates.get_fb_group_posts(target_date, fb_page.page_id, access_token)
       npost = len(fb_posts)
-      fb_group_infos.append(fb_updates.FbGroup(fb_page.name, fb_page.page_id, fb_posts, npost))
+      fb_group_infos.append(fb_updates.FbGroup(fb_page.name, fb_page.page_id, fb_posts, fb_page.img_url, npost))
 
       data = {
         'fb_group_infos': fb_group_infos,
