@@ -1,9 +1,8 @@
 {% load static %}
 {% for info in fb_group_infos %}
-  {% with 'images/fb_group_'|add:info.id|add:'.jpg' as href_url %}
   <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
     <div class="card h-100">
-      <a href="{{ info.url }}"><img class="card-img-top" src="{% static href_url %}" alt=""></a>
+      <a href="{{ info.url }}"><img class="card-img-top" src="{{ info.img_url }}" alt=""></a>
       <div class="card-body">
         <h4 class="card-title">
           <a href="{{ info.url }}">{{ info.name }}</a>
@@ -12,7 +11,7 @@
       </div>
     </div>
   </div>
-  {% endwith %}
+
   <div class="modal fade" id="modal-{{ info.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
