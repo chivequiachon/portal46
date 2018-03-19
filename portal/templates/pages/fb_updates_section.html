@@ -6,7 +6,18 @@
         <h4 class="card-title">
           <a href="{{ info.url }}">{{ info.name }}</a>
         </h4>
-        <p class="card-text"><a href="#" data-toggle="modal" data-target="#modal-{{ info.id }}"><span style="font-size:25px;">{{ info.post_count }}</span></a> post(s) since {{ fb_target_date }}.</p>
+        <p class="card-text">
+          {% if info.id in fb_updated_grp_ids %}
+          <a id="a-{{ info.id }}_{{ info.post_count }}-{{ info.cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ info.id }}" onclick="return updateCookie(this.id, 'fb');">
+            <span style="font-size:25px;color:red;">
+          {% else %}
+          <a id="a-{{ info.id }}_{{ info.post_count }}-{{ info.cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ info.id }}">
+            <span style="font-size:25px;">
+          {% endif %}
+            {{ info.post_count }}</span>
+          </a>
+          post(s) since {{ fb_target_date }}.
+        </p>
       </div>
     </div>
   </div>

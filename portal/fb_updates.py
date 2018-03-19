@@ -13,19 +13,14 @@ class FbPost(object):
     
 
 class FbGroup(object):
-  name = None
-  id = None
-  url = None
-  posts = None # FbPost list
-  post_count = 0
-
-  def __init__(self, name, id, posts, img_url, post_count):
+  def __init__(self, name, id, posts, img_url, post_count, cookie_ref_idx):
     self.name = name
     self.id = id
-    self.posts = posts
+    self.posts = posts # fb post list
     self.post_count = post_count
     self.url = "https://www.facebook.com/" + id
     self.img_url = img_url
+    self.cookie_ref_idx = cookie_ref_idx
 
 
 def get_access_token(fb_client_id, fb_client_secret):

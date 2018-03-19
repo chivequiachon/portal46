@@ -61,7 +61,7 @@ $.ajax({
         $("#forums").html(data)
     },
     failure: function(data) { 
-        alert('Got an error dude');
+        console.log('got an error: forum_updates');
     }
 }); 
 
@@ -72,7 +72,7 @@ $.ajax({
         $("#fb-pages").html(data)
     },
     failure: function(data) { 
-        alert('Got an error dude');
+        console.log('got an error: fb_updates');
     }
 }); 
 
@@ -83,7 +83,62 @@ $.ajax({
         $("#blogs").html(data)
     },
     failure: function(data) { 
-        alert('Got an error dude');
+        console.log('got an error: blog_updates');
     }
 });
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+            // Only send the token to relative URLs i.e. locally.
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    }
+});
+
+function updateCookie(href_id, which)
+{
+    var dashPos = href_id.lastIndexOf("-");
+    var underscorePos = href_id.lastIndexOf("_");
+    var cookieRefIdx = href_id.slice(dashPos+1, href_id.length);
+    var postCount = href_id.slice(underscorePos+1, dashPos);
+
+    $.ajax({
+        url: '{% url 'update_cookie' %}',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({'which':which, 'cookie_ref_idx':cookieRefIdx, 'post_count':postCount}),
+        beforeSend: function(xhr, settings) {
+            $.ajaxSettings.beforeSend(xhr, settings);
+        },
+        success: function(data) {
+            // remove color attribute from style
+            $("#" + href_id + " span").css("color", "");
+
+            // remove onclick
+            $("#" + href_id).removeAttr("onclick");
+        },
+        failure: function(data) { 
+            console.log('got an error: updatedFbCookie');
+        }
+    });
+
+    return true;
+}
 {% endblock %}
