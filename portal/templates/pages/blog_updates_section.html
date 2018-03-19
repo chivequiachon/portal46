@@ -6,7 +6,19 @@
         <h4 class="card-title">
           <a href="{{ updates.blog_url }}">{{ updates.blog_name }}</a>
         </h4>
-        <p class="card-text"><a href="#" data-toggle="modal" data-target="#modal-{{ updates.blog_name }}"><span style="font-size:25px;">{{ updates.blog_posts_n }}</span></a> post(s) since {{ updates.date }}.</p>
+        <p class="card-text">
+          {% if updates.blog_name in updated_blogs %}
+          <a id="a-{{ updates.blog_name }}_{{ updates.blog_posts_n }}-{{ updates.blog_cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ updates.blog_name }}" onclick="return updateCookie(this.id, 'blog')">
+            <span style="font-size:25px;color:red;">
+          {% else %}
+          <a id="a-{{ updates.blog_name }}_{{ updates.blog_posts_n }}-{{ updates.blog_cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ updates.blog_name }}">
+            <span style="font-size:25px;">
+          {% endif %}
+              {{ updates.blog_posts_n }}
+            </span>
+          </a>
+          post(s) since {{ updates.date }}.
+        </p>
       </div>
     </div>
   </div>

@@ -10,6 +10,7 @@ urlpatterns = [
   url(r'^fbupdates/$', views.fb_updates_fetch, name='fb_updates'),
   url(r'^blogupdates/$', views.blog_updates_fetch, name='blog_updates'),
   url(r'^forumupdates/$', views.forum_updates_fetch, name='forum_updates'),
+  url(r'^updatecookie/$', views.update_cookie, name='update_cookie'),
 #  url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
 #  url(r'^post/new/$', views.post_new, name='post_new'),
 #  url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit')
