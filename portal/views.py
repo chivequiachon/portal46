@@ -4,12 +4,15 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-from portal import fb_updates, stage48_updates, onehallyu_updates, endecoder, updates_tracker
+from portal import fb_updates, endecoder, updates_tracker
 from portal.blog_check import BlogCheck
 from portal.ikuchancheeks_updates import IkuchancheeksCheckStrategy
 from portal.conjyak_updates import ConjyakCheckStrategy
 from portal.depressingsubs_updates import DepressingSubsCheckStrategy
 from portal.models import SubtitleFile, Credential, FbPage
+
+from portal.forums.forum_check import ForumCheck
+from portal.forums.stage48_updates import Stage48CheckStrategy
 
 import datetime
 import json
@@ -45,9 +48,14 @@ def forum_updates_fetch(request):
     s48_username = endecoder.decode(s48_credential[0].username)
     s48_password = endecoder.decode(s48_credential[0].password)
   
-    s48_alerts_page = stage48_updates.get_alerts_page(s48_username, s48_password)
-    s48_alerts = stage48_updates.get_alerts(s48_alerts_page)
-    s48_alerts_n = len(s48_alerts)
+    #s48_alerts_page = stage48_updates.get_alerts_page(s48_username, s48_password)
+    #s48_alerts = stage48_updates.get_alerts(s48_alerts_page)
+    #s48_alerts_n = len(s48_alerts)
+
+    s48_check_strategy = Stage48CheckStrategy(s48_username, s48_password)
+    s48_check = ForumCheck(s48_check_strategy, "Stage48", "http://www.stage48.net/forum/index.php#nogizaka46.62", "today", 0)
+    s48_check.check_updates()
+ 
 
     ## Get OneHallyu Updates
     #onehallyu_auth_key = settings.ONEHALLYU_AUTH_KEY
@@ -60,8 +68,7 @@ def forum_updates_fetch(request):
     #onehallyu_notifs_n = len(onehallyu_notifs)
    
     data = {
-      'stage48_alerts': s48_alerts,
-      'stage48_alerts_n': s48_alerts_n,
+      'stage48_updates': s48_check,
       #'onehallyu_notifs': onehallyu_notifs,
       #'onehallyu_notifs_n': onehallyu_notifs_n,
     }
