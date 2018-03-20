@@ -1,4 +1,4 @@
-from portal.blog_check_strategy import BlogCheckStrategy
+from portal.blogs.blog_check_strategy import BlogCheckStrategy
 
 
 class BlogCheck(object):
