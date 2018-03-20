@@ -5,11 +5,12 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from portal import fb_updates, endecoder, updates_tracker
-from portal.blog_check import BlogCheck
-from portal.ikuchancheeks_updates import IkuchancheeksCheckStrategy
-from portal.conjyak_updates import ConjyakCheckStrategy
-from portal.depressingsubs_updates import DepressingSubsCheckStrategy
 from portal.models import SubtitleFile, Credential, FbPage
+
+from portal.blogs.blog_check import BlogCheck
+from portal.blogs.ikuchancheeks_updates import IkuchancheeksCheckStrategy
+from portal.blogs.conjyak_updates import ConjyakCheckStrategy
+from portal.blogs.depressingsubs_updates import DepressingSubsCheckStrategy
 
 from portal.forums.forum_check import ForumCheck
 from portal.forums.stage48_updates import Stage48CheckStrategy
