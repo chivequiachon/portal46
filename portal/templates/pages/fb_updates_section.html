@@ -1,4 +1,4 @@
-{% for info in fb_group_infos %}
+{% for info in fb_pages %}
   <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
     <div class="card h-100">
       <a href="{{ info.url }}"><img class="card-img-top" src="{{ info.img_url }}" alt=""></a>
@@ -8,11 +8,11 @@
         </h4>
         <p class="card-text">
         {% if info.posts %}
-          {% if info.id in fb_updated_grp_ids %}
-          <a id="a-{{ info.id }}_{{ info.post_count }}-{{ info.cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ info.id }}" onclick="return updateCookie(this.id, 'fb');">
+          {% if info.page_id in fb_updated_page_ids %}
+          <a id="a-{{ info.page_id }}_{{ info.post_count }}-{{ info.cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ info.page_id }}" onclick="return updateCookie(this.id, 'fb');">
             <span style="font-size:25px;color:red;">
           {% else %}
-          <a id="a-{{ info.id }}_{{ info.post_count }}-{{ info.cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ info.id }}">
+          <a id="a-{{ info.page_id }}_{{ info.post_count }}-{{ info.cookie_ref_idx }}" href="#" data-toggle="modal" data-target="#modal-{{ info.page_id }}">
             <span style="font-size:25px;">
           {% endif %}
             {{ info.post_count }}</span>
@@ -27,7 +27,7 @@
   </div>
 
   {% if info.posts %}
-  <div class="modal fade" id="modal-{{ info.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal-{{ info.page_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
