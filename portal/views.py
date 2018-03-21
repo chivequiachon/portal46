@@ -4,7 +4,8 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-from portal import fb_updates, endecoder, updates_tracker
+from portal import endecoder, updates_tracker
+from portal.fb import fb_updates
 from portal.models import SubtitleFile, Credential, FbPage
 
 from portal.blogs.blog_check import BlogCheck
@@ -120,12 +121,9 @@ def fb_updates_fetch(request):
     target_date = fb_updates.get_target_date()
 
     fb_pages = FbPage.objects.all()
-    fb_group_infos = []
-    for fb_page in fb_pages:
-      fb_posts = fb_updates.get_fb_group_posts(target_date, fb_page.page_id, access_token)
-      npost = len(fb_posts)
-      fb_group_infos.append(fb_updates.FbGroup(fb_page.name, fb_page.page_id, fb_posts, fb_page.img_url, npost, fb_page.cookie_ref_idx))
-
+    for i in range(len(fb_pages)):
+       fb_pages[i].retrieve_posts(access_token, target_date) 
+    
     ## Check cookies
     groups_n = len(fb_pages) 
 
@@ -144,12 +142,12 @@ def fb_updates_fetch(request):
 
     # show unread
     cookie = request.COOKIES.get(cookie_name, val)
-    grp_ids_with_updates = updates_tracker.check_cookie_fb(cookie, fb_group_infos)
+    page_ids_with_updates = updates_tracker.check_cookie_fb(cookie, fb_pages)
 
     data = {
-      'fb_group_infos': fb_group_infos,
+      'fb_pages': fb_pages,
       'fb_target_date': target_date,
-      'fb_updated_grp_ids': grp_ids_with_updates,
+      'fb_updated_page_ids': page_ids_with_updates,
     }
 
     ret = HttpResponse(render_to_string('pages/fb_updates_section.html', data))
@@ -217,7 +215,6 @@ def blog_updates_fetch(request):
 
 
   return ret
-
 
 def updates(request):
   return render(request, 'pages/updates.html', {})
