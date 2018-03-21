@@ -1,15 +1,15 @@
-from portal import fb_updates
+from portal.fb import fb_updates
 
-def check_cookie_fb(cookie, fb_group_infos):
+def check_cookie_fb(cookie, fb_pages):
     # format: info_post_count1|info_post_count2|info_post_count3|......
     cookie_values = cookie.split('|')
-    updated_fb_grps_ids = []
-    for cookie_val, fb_grp_info in zip(cookie_values, fb_group_infos):
+    updated_fb_page_ids = []
+    for cookie_val, fb_page in zip(cookie_values, fb_pages):
         int_val = int(cookie_val)
-        if int_val < fb_grp_info.post_count:
-            updated_fb_grps_ids.append(fb_grp_info.id)
+        if int_val != fb_page.post_count:
+            updated_fb_page_ids.append(fb_page.page_id)
 
-    return updated_fb_grps_ids
+    return updated_fb_page_ids
 
 
 def check_cookie_blog(cookie, blogs):
@@ -18,7 +18,7 @@ def check_cookie_blog(cookie, blogs):
     updated_blogs = []
     for cookie_val, blog in zip(cookie_values, blogs):
         int_val = int(cookie_val)
-        if int_val < blog.blog_posts_n:
+        if int_val != blog.blog_posts_n:
             updated_blogs.append(blog.blog_name)
 
     return updated_blogs
