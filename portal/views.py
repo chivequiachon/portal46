@@ -50,16 +50,11 @@ def forum_updates_fetch(request):
         s48_credential = Credential.objects.filter(forum__contains='stage48')
         s48_username = endecoder.decode(s48_credential[0].username)
         s48_password = endecoder.decode(s48_credential[0].password)
-      
-        #s48_alerts_page = stage48_updates.get_alerts_page(s48_username, s48_password)
-        #s48_alerts = stage48_updates.get_alerts(s48_alerts_page)
-        #s48_alerts_n = len(s48_alerts)
 
         s48_check_strategy = Stage48CheckStrategy(s48_username, s48_password)
         s48_check = ForumCheck(s48_check_strategy, "Stage48", "http://www.stage48.net/forum/index.php#nogizaka46.62", "today", 0)
         s48_check.check_updates()
      
-
         ## Get OneHallyu Updates
         #onehallyu_auth_key = settings.ONEHALLYU_AUTH_KEY
         #onehallyu_credential = Credential.objects.filter(forum__contains='onehallyu')
