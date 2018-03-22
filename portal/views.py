@@ -146,7 +146,7 @@ def fb_updates_fetch(request):
         ret = HttpResponse(render_to_string('pages/fb_updates_section.html', data))
 
         if set_new_empty_cookie:
-            ret.set_cookie(cookie_name, default_val)
+            ret.set_cookie(cookie_name, val)
       
     return ret
 
@@ -194,7 +194,7 @@ def blog_updates_fetch(request):
         ret = HttpResponse(render_to_string('pages/blog_updates_section.html', data))
 
         if set_new_empty_cookie:
-            ret.set_cookie(cookie_name, default_val)
+            ret.set_cookie(cookie_name, val)
 
     return ret
 
