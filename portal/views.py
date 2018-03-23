@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 
-from . import endecoder
+from . import endecoder, constants
 from .fb import fb_updates
 from .models import SubtitleFile, Credential, FbPage
 
@@ -52,7 +52,7 @@ def forum_updates_fetch(request):
         s48_password = endecoder.decode(s48_credential[0].password)
 
         s48_check_strategy = Stage48CheckStrategy(s48_username, s48_password)
-        s48_check = ForumCheck(s48_check_strategy, "Stage48", "http://www.stage48.net/forum/index.php#nogizaka46.62", "today", 0)
+        s48_check = ForumCheck(s48_check_strategy, "Stage48", constants.STAGE48_URL, "today", 0)
         s48_check.check_updates()
      
         ## Get OneHallyu Updates
@@ -87,9 +87,9 @@ def update_cookie(request):
             # Determine which cookie to create/update
             cookie_name = None
             if which_cookie == 'fb':
-                cookie_name = 'fb-cookie'
+                cookie_name = constants.FB_COOKIE_NAME
             elif which_cookie == 'blog':
-                cookie_name = 'blog-cookie'
+                cookie_name = constants.BLOG_COOKIE_NAME
 
             cookie_ref_idx = int(json_data['cookie_ref_idx'])
             post_count = json_data['post_count']
@@ -103,7 +103,7 @@ def update_cookie(request):
             ret = HttpResponse("OK")
 
             # Set cookie with 3 days expiry
-            max_age = 3 * 24 * 60 * 60
+            max_age = constants.COOKIE_EXPIRY
             expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
             ret.set_cookie(cookie_name, new_cookie_val, max_age=max_age, expires=expires)
       
@@ -125,7 +125,7 @@ def fb_updates_fetch(request):
         groups_n = len(fb_pages) 
 
         # check cookie existence
-        cookie_name = 'fb-cookie'
+        cookie_name = constants.FB_COOKIE_NAME
         val, set_new_empty_cookie = tracking_utils.check_cookie(request, groups_n, cookie_name)
 
         # show unread
@@ -151,22 +151,28 @@ def blog_updates_fetch(request):
         ## Get blog updates
         blogs = []
 
+
         # Ikuchancheeks
         now = datetime.datetime.now()
+        since_date_format = "{}/{}".format(now.year, now.month)
         ikuchancheeks_check_strategy = IkuchancheeksCheckStrategy(now.year, now.month)
-        ikuchancheeks_check = BlogCheck(ikuchancheeks_check_strategy, "Ikuchancheeks", "https://ikuchancheeks.blogspot.co.id/", "{}/{}".format(now.year, now.month), 0)
+        ikuchancheeks_check = (
+            BlogCheck(ikuchancheeks_check_strategy, "Ikuchancheeks", constants.IKUCHANCHEEKS_URL, since_date_format, constants.IKUCHANCHEEKS_COOKIE_REF_IDX)
+        )
         ikuchancheeks_check.check_updates()
         blogs.append(ikuchancheeks_check)
 
         # Conjyak
         conjyak_check_strategy = ConjyakCheckStrategy(now.year, now.month)
-        conjyak_check = BlogCheck(conjyak_check_strategy, "Conjyak", "https://conjyak.wordpress.com/", "{}/{}".format(now.year, now.month), 1)
+        conjyak_check = BlogCheck(conjyak_check_strategy, "Conjyak", constants.CONJYAK_URL, since_date_format, constants.CONJYAK_COOKIE_REF_IDX)
         conjyak_check.check_updates()
         blogs.append(conjyak_check)
 
         # DepressingSubs
         depressingsubs_check_strategy = DepressingSubsCheckStrategy(now.year, now.month)
-        depressingsubs_check = BlogCheck(depressingsubs_check_strategy, "DepressingSubs", "http://depressingsubs.com/", "{}/{}".format(now.year, now.month), 2)
+        depressingsubs_check = (
+            BlogCheck(depressingsubs_check_strategy, "DepressingSubs", constants.DEPRESSINGSUBS_URL, since_date_format, constants.DEPRESSINGSUBS_COOKIE_REF_IDX)
+        )
         depressingsubs_check.check_updates()
         blogs.append(depressingsubs_check)
 
@@ -174,7 +180,7 @@ def blog_updates_fetch(request):
         blogs_n = len(blogs) 
 
         # check cookie existence
-        cookie_name = 'blog-cookie'
+        cookie_name = constants.BLOG_COOKIE_NAME
         val, set_new_empty_cookie = tracking_utils.check_cookie(request, blogs_n, cookie_name)
 
         # show unread
